@@ -1,0 +1,19 @@
+version: '3'
+services:
+  node:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '6001:6001'
+    container_name: node-app
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+  redis:
+    container_name: redis-app
+    image: redis/redis-stack
+    restart: always
+    ports:
+      - '6379:6379'
+      - '8001:8001'
